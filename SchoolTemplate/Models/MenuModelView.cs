@@ -7,7 +7,7 @@ namespace SchoolTemplate.Models
 {
     public class MenuModelView
     {
-        public int ID { get; set; }
+        public int IdMenu { get; set; }
 
         public int IdParent { get; set; }
 
@@ -16,6 +16,8 @@ namespace SchoolTemplate.Models
         public string ActionName { get; set; }
 
         public string ControllerName { get; set; }
+
+        public int? OptionalId { get; set; }
 
         public List<MenuModelView> SubMenus { get; set; }
 

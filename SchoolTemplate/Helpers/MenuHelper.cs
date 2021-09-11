@@ -10,7 +10,12 @@ namespace SchoolTemplate.Helpers
             StringBuilder stringBuilder = new StringBuilder();
 
             if (!string.IsNullOrWhiteSpace(menuModelView.ActionName))
-                stringBuilder.Append($"<li><a href=\"/{menuModelView.ControllerName}/{menuModelView.ActionName}\">{menuModelView.Text}</a></li>");
+            {
+                if(menuModelView.OptionalId != null)
+                    stringBuilder.Append($"<li><a href=\"/{menuModelView.ControllerName}/{menuModelView.ActionName}/{menuModelView.OptionalId}\">{menuModelView.Text}</a></li>");
+                else
+                    stringBuilder.Append($"<li><a href=\"/{menuModelView.ControllerName}/{menuModelView.ActionName}\">{menuModelView.Text}</a></li>");
+            }
             else
             {
                 stringBuilder.Append($"<li><a href=\"#\">{menuModelView.Text}</a><ul>");

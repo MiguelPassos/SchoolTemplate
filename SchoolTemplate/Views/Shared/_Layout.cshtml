@@ -25,167 +25,116 @@
     <link rel="stylesheet" href="~/css/typography.css" />
     <link rel="stylesheet" href="~/css/color.css" />
     <link rel="stylesheet" href="~/css/shortcodes.css" />
+    <link rel="stylesheet" href="~/style.css" />
     <!-- end Section Styles -->
 
 </head>
 <body>
-    <!--LOGOUT MODAL START-->
-    <partial name="_Logout" />    
-    <!--LOGOUT MODAL END-->
-    <nav class="navbar navbar-inverse navbar-fixed-top" style="box-shadow: 0px 1px 3px 0px rgb(0 0 0 / 75%);">
-        <div class="top_bar_2" style="background: linear-gradient(to bottom, #353535 0%,#716f6f 100%);">
-            <div class="container">
-                <div class="col-md-5">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <ul class="top_nav" style="float: left; display: inline-block;">
-                            <li><a href="#">Bem vindo @User.Identity.Name!</a></li>
-                        </ul>
-                    }
-                </div>
-                <div class="col-md-7">
-                    @if (!User.Identity.IsAuthenticated)
-                    {
-                        <div class="lng_wrap">
-                            <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-sign-in-alt"></i>Entrar
-                                    <span class="caret"></span>
-                                </button>
-                                <div class="dropdown-menu" style="padding: 10px; min-width: 220px;">
-                                    <form asp-action="Index" asp-antiforgery="true" method="post">
-                                        <div class="form-group">
-                                            <input name="username" class="form-control" placeholder="Username" required="required">
-                                        </div>
-                                        <div class="form-group">
-                                            <input name="password" type="password" class="form-control" placeholder="Password" required="required">
-                                        </div>
-                                        <div class="form-group checkbox">
-                                            <label style="margin-left: 30px;">
-                                                <input type="checkbox" name="remember" value="1" style="float: left;">
-                                                <span>Mantenha logado</span>
-                                            </label>
-                                        </div>
-                                        <input id="btnLogin" type="submit" class="btn btn-primary btn-block" value="OK" style="background-color: #952843; border: solid 1px #460111;">
-                                        <div class="text-center mt-2">
-                                            <a href="#">Esqueceu sua senha?</a>
-                                        </div>
-                                    </form>
+    <div class="kode_wrapper">
+        <!--LOGOUT MODAL START-->
+        <partial name="_Logout" />
+        <!--LOGOUT MODAL END-->
+        <nav class="navbar navbar-inverse navbar-fixed-top" style="box-shadow: 0px 1px 3px 0px rgb(0 0 0 / 75%);">
+            <div class="top_bar_2" style="background: linear-gradient(to bottom, #353535 0%,#716f6f 100%);">
+                <div class="container">
+                    <div class="col-md-5">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <ul class="top_nav" style="float: left; display: inline-block;">
+                                <li><a href="#">Bem vindo @User.Identity.Name!</a></li>
+                            </ul>
+                        }
+                    </div>
+                    <div class="col-md-7">
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <div class="lng_wrap">
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-sign-in-alt"></i>Entrar
+                                        <span class="caret"></span>
+                                    </button>
+                                    <div class="dropdown-menu" style="padding: 10px; min-width: 220px;">
+                                        <form asp-action="Index" asp-antiforgery="true" method="post">
+                                            <div class="form-group">
+                                                <input name="username" class="form-control" placeholder="Username" required="required">
+                                            </div>
+                                            <div class="form-group">
+                                                <input name="password" type="password" class="form-control" placeholder="Password" required="required">
+                                            </div>
+                                            <div class="form-group checkbox">
+                                                <label style="margin-left: 30px;">
+                                                    <input type="checkbox" name="remember" value="1" style="float: left;">
+                                                    <span>Mantenha logado</span>
+                                                </label>
+                                            </div>
+                                            <input id="btnLogin" type="submit" class="btn btn-primary btn-block" value="OK" style="background-color: #952843; border: solid 1px #460111;">
+                                            <div class="text-center mt-2">
+                                                <a href="#">Esqueceu sua senha?</a>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <ul class="login_wrap">
-                            <li>
-                                <a href="#" data-toggle="modal" data-target="#reg-box"><i class="fa fa-user"></i>Registrar</a>
-                            </li>
+                            <ul class="login_wrap">
+                                <li>
+                                    <a href="#" data-toggle="modal" data-target="#reg-box"><i class="fa fa-user"></i>Registrar</a>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            <ul class="login_wrap">
+                                <li>
+                                    <a href="#" data-toggle="modal" data-target="#logout-box"><i class="fa fa-sign-out-alt"></i>Sair</a>
+                                </li>
+                            </ul>
+                        }
+                        <ul class="top_nav" style="float: right; display: inline-block;">
+                            <li><a href="blog-detail.html">News</a></li>
+                            <li><a href="event-detail.html">Eventos</a></li>
                         </ul>
-                    }
-                    else
-                    {
-                        <ul class="login_wrap">
-                            <li>
-                                <a href="#" data-toggle="modal" data-target="#logout-box"><i class="fa fa-sign-out-alt"></i>Sair</a>                                
-                            </li>
-                        </ul>
-                    }
-                    <ul class="top_nav" style="float: right; display: inline-block;">
-                        <li><a href="blog-detail.html">News</a></li>
-                        <li><a href="event-detail.html">Eventos</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="top_bar_2" style="height: 5px; background-color: #952843; border-bottom: solid 1px #460111;"></div>
-        <div style="background-color: #fff;">
-            <div class="container">
-                <div class="col-md-2">
-                    <div class="logo_wrap">
-                        <a href="#"><img src="images/logo_colegiolema2.png" alt="Logo" style="height: 60px;"></a>
                     </div>
                 </div>
-                <div class="col-md-10">
-                    <!--kode nav_2 start-->
-                    <div class="nav_2" id="navigation">
-                        <ul>
-                            @if (Model == null)
-                            {
-                                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                                <li>
-                                    <a href="#">Institucional</a>
-                                    <ul>
-                                        <li>@Html.ActionLink("Palavra do Diretor", "PrincipalOpinion", "Institutional")</li>
-                                        <li>@Html.ActionLink("Proposta", "Proposal", "Institutional")</li>
-                                        <li>@Html.ActionLink("Pedagogia Humanista", "HumanistPedagogy", "Institutional")</li>
-                                        <li>@Html.ActionLink("Regulamento Interno", "InternalRegulation", "Institutional")</li>
-                                        <li>@Html.ActionLink("Calendário", "Calendar", "Institutional")</li>
-                                        <li>@Html.ActionLink("Matrícula", "Registration", "Institutional")</li>
-                                        <li>@Html.ActionLink("Galeria", "Gallery", "Institutional")</li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Cursos</a>
-                                    <ul>
-                                        <li>@Html.ActionLink("Infantil", "Child", "Courses")</li>
-                                        <li>@Html.ActionLink("Fundamental I", "ElementaryI", "Courses")</li>
-                                        <li>@Html.ActionLink("Fundamental II", "ElementaryII", "Courses")</li>
-                                        <li>@Html.ActionLink("Ensino Médio", "HighSchool", "Courses")</li>
-                                        <li>@Html.ActionLink("Integral", "FullTeaching", "Courses")</li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Lema+</a>
-                                    <ul>
-                                        <li>@Html.ActionLink("Karatê", "Karate", "ExtraCourses")</li>
-                                        <li>@Html.ActionLink("Inglês", "English", "ExtraCourses")</li>
-                                        <li>@Html.ActionLink("Ballet", "Ballet", "ExtraCourses")</li>
-                                        <li>@Html.ActionLink("Música", "Music", "ExtraCourses")</li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    @Html.ActionLink("Instalações", "Installations", "Home")
-                                </li>
-                                <li>
-                                    @Html.ActionLink("Parceiros", "Partners", "Home")
-                                </li>
-                                <li>
-                                    <a href="#">Lema Home</a>
-                                    <ul>
-                                        <li>@Html.ActionLink("Vídeo Aula", "VideoLessons", "HomeSchool")</li>
-                                        <li>@Html.ActionLink("Tarefas", "Tasks", "HomeSchool")</li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    @Html.ActionLink("Contato", "Contact", "Home")
-                                </li>
-                            }
-                            else
-                            {
-                                foreach (MenuModelView menu in Model)
+            </div>
+            <div class="top_bar_2" style="height: 5px; background-color: #952843; border-bottom: solid 1px #460111;"></div>
+            <div style="background-color: #fff;">
+                <div class="container">
+                    <div class="col-md-2">
+                        <div class="logo_wrap">
+                            <a href="#"><img src="images/logo_colegiolema2.png" alt="Logo" style="height: 60px;"></a>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <!--kode nav_2 start-->
+                        <div class="nav_2" id="navigation">
+                            <ul>
+                                @foreach (MenuModelView menu in Model)
                                 {
                                     @Html.Raw(MenuHelper.MenuFor(menu))
                                 }
-                            }
-                        </ul>
+                            </ul>
+                        </div>
+                        <!--kode nav_2 end-->
                     </div>
-                    <!--kode nav_2 end-->
                 </div>
             </div>
+        </nav>
+
+        <partial name="_CookieConsentPartial" />
+
+        <div class="body-content">
+
+            @if (TempData["Message"] != null)
+            {
+                @Html.Raw(TempData["Message"])
+            }
+            @RenderBody()
+            <hr />
+            <footer>
+            </footer>
+            <partial name="_Footer" />
         </div>
-    </nav>
-
-    <partial name="_CookieConsentPartial" />
-
-    <div class="body-content">
-
-        @if (TempData["Message"] != null)
-        {
-            @Html.Raw(TempData["Message"])
-        }
-        @RenderBody()
-        <hr />
-        <footer>
-        </footer>
-        <partial name="_Footer" />
     </div>
 </body>
 </html>
