@@ -31,13 +31,6 @@ namespace SchoolTemplate.Helpers
             return htmlMenu.ToString();
         }
 
-        private static string MenuFor(string controller, string action, int? optionalId)
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-
-            return stringBuilder.ToString();
-        }
-
         private static string MenuFor(MenuModelView menuModelView)
         {
             StringBuilder stringBuilder = new StringBuilder();
