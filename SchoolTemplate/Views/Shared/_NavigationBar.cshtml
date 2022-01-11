@@ -1,0 +1,87 @@
+﻿@using SchoolTemplate.Helpers
+
+<nav class="navbar navbar-inverse navbar-fixed-top" style="box-shadow: 0px 1px 3px 0px rgb(0 0 0 / 75%);">
+    <div class="top_bar_2" style="background: linear-gradient(to bottom, #353535 0%,#716f6f 100%);">
+        <div style="position: absolute; top: 20px; left: 10px; font-size: 12px; color: #ccc">
+        </div>
+        <div class="container">
+            <div class="col-md-5">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <ul class="top_nav" style="float: left; display: inline-block;">
+                        <li><a href="#">Bem vindo @User.Identity.Name!</a></li>
+                    </ul>
+                }
+            </div>
+            <div class="col-md-7">
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <div class="lng_wrap">
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-sign-in-alt"></i>Entrar
+                                <span class="caret"></span>
+                            </button>
+                            <div class="dropdown-menu" style="padding: 10px; min-width: 220px;">
+                                <form asp-controller="Account" asp-action="LogIn" asp-antiforgery="true" method="post">
+                                    <div class="form-group">
+                                        <input name="UserLogin" type="text" class="form-control" placeholder="Usuário" required="required">
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="Password" type="password" class="form-control" placeholder="Senha" required="required">
+                                    </div>
+                                    <div class="form-group checkbox">
+                                        <label style="margin-left: 30px;">
+                                            <input type="checkbox" name="RememberMe" value="1" style="float: left;">
+                                            <span>Mantenha logado</span>
+                                        </label>
+                                    </div>
+                                    <input id="btnLogin" type="submit" class="btn btn-primary btn-block" value="OK" style="background-color: #952843; border: solid 1px #460111;">
+                                    <div class="text-center mt-2">
+                                        <a href="#">Esqueceu sua senha?</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="login_wrap">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#reg-box"><i class="fa fa-user"></i>Registrar</a>
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="login_wrap">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#logout-box"><i class="fa fa-sign-out-alt"></i>Sair</a>
+                        </li>
+                    </ul>
+                }
+                <ul class="top_nav">
+                    <li><a href="blog-detail.html">News</a></li>
+                    <li><a href="event-detail.html">Eventos</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="top_bar_2" style="height: 5px; background-color: #952843; border-bottom: solid 1px #460111;"></div>
+    <div style="background-color: #fff;">
+        <div class="container">
+            <div class="col-md-2">
+                <div class="logo_wrap">
+                    <img src="../images/logo_colegiolema2.png" alt="Logo" style="height: 60px;">
+                </div>
+            </div>
+            <div class="col-md-10">
+                <!--kode nav_2 start-->
+                <div class="nav_2" id="navigation">
+                    <ul>
+                        @Html.Raw(MenuHelper.GenerateMenu())
+                    </ul>
+                </div>
+                <!--kode nav_2 end-->
+            </div>
+        </div>
+    </div>
+</nav>

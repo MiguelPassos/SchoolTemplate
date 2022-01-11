@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
-namespace SchoolRepository.Inte3rfaces
+namespace SchoolRepository.Interfaces
 {
     public interface IHomeRepository
     {
-        void Teste();
     }
 }

@@ -1,5 +1,4 @@
-﻿@model List<MenuModelView>
-@using SchoolTemplate.Helpers
+﻿@using SchoolTemplate.Helpers
 
 <!DOCTYPE html>
 <html>
@@ -18,14 +17,22 @@
     <!-- end Section Scripts -->
     <!-- start Section Styles -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/css/template.css" />
-    <link rel="stylesheet" href="~/css/widget.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
-    <link rel="stylesheet" href="~/css/typography.css" />
+    <link rel="stylesheet" href="~/style.css" />
+    <!-- start Template Styles -->
+    <link rel="stylesheet" href="~/css/template.css" />
     <link rel="stylesheet" href="~/css/color.css" />
     <link rel="stylesheet" href="~/css/shortcodes.css" />
-    <link rel="stylesheet" href="~/style.css" />
+    <link rel="stylesheet" href="~/css/typography.css" />
+    <link rel="stylesheet" href="~/css/widget.css" />
+
+    @*<link rel="stylesheet" href="~/new-css/template.css" />
+    <link rel="stylesheet" href="~/new-css/color.css" />
+    <link rel="stylesheet" href="~/new-css/shortcodes.css" />
+    <link rel="stylesheet" href="~/new-css/typography.css" />
+    <link rel="stylesheet" href="~/new-css/widget.css" />*@
+    <!-- end Template Styles -->
     <!-- end Section Styles -->
 
 </head>
@@ -34,93 +41,7 @@
         <!--LOGOUT MODAL START-->
         <partial name="_Logout" />
         <!--LOGOUT MODAL END-->
-        <nav class="navbar navbar-inverse navbar-fixed-top" style="box-shadow: 0px 1px 3px 0px rgb(0 0 0 / 75%);">
-            <div class="top_bar_2" style="background: linear-gradient(to bottom, #353535 0%,#716f6f 100%);">
-                <div class="container">
-                    <div class="col-md-5">
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <ul class="top_nav" style="float: left; display: inline-block;">
-                                <li><a href="#">Bem vindo @User.Identity.Name!</a></li>
-                            </ul>
-                        }
-                    </div>
-                    <div class="col-md-7">
-                        @if (!User.Identity.IsAuthenticated)
-                        {
-                            <div class="lng_wrap">
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-sign-in-alt"></i>Entrar
-                                        <span class="caret"></span>
-                                    </button>
-                                    <div class="dropdown-menu" style="padding: 10px; min-width: 220px;">
-                                        <form asp-action="Index" asp-antiforgery="true" method="post">
-                                            <div class="form-group">
-                                                <input name="username" class="form-control" placeholder="Username" required="required">
-                                            </div>
-                                            <div class="form-group">
-                                                <input name="password" type="password" class="form-control" placeholder="Password" required="required">
-                                            </div>
-                                            <div class="form-group checkbox">
-                                                <label style="margin-left: 30px;">
-                                                    <input type="checkbox" name="remember" value="1" style="float: left;">
-                                                    <span>Mantenha logado</span>
-                                                </label>
-                                            </div>
-                                            <input id="btnLogin" type="submit" class="btn btn-primary btn-block" value="OK" style="background-color: #952843; border: solid 1px #460111;">
-                                            <div class="text-center mt-2">
-                                                <a href="#">Esqueceu sua senha?</a>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <ul class="login_wrap">
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#reg-box"><i class="fa fa-user"></i>Registrar</a>
-                                </li>
-                            </ul>
-                        }
-                        else
-                        {
-                            <ul class="login_wrap">
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#logout-box"><i class="fa fa-sign-out-alt"></i>Sair</a>
-                                </li>
-                            </ul>
-                        }
-                        <ul class="top_nav" style="float: right; display: inline-block;">
-                            <li><a href="blog-detail.html">News</a></li>
-                            <li><a href="event-detail.html">Eventos</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="top_bar_2" style="height: 5px; background-color: #952843; border-bottom: solid 1px #460111;"></div>
-            <div style="background-color: #fff;">
-                <div class="container">
-                    <div class="col-md-2">
-                        <div class="logo_wrap">
-                            <a href="#"><img src="images/logo_colegiolema2.png" alt="Logo" style="height: 60px;"></a>
-                        </div>
-                    </div>
-                    <div class="col-md-10">
-                        <!--kode nav_2 start-->
-                        <div class="nav_2" id="navigation">
-                            <ul>
-                                @foreach (MenuModelView menu in Model)
-                                {
-                                    @Html.Raw(MenuHelper.MenuFor(menu))
-                                }
-                            </ul>
-                        </div>
-                        <!--kode nav_2 end-->
-                    </div>
-                </div>
-            </div>
-        </nav>
-
+        <partial name="_NavigationBar" />
         <partial name="_CookieConsentPartial" />
 
         <div class="body-content">

@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolTemplate", "SchoolTemplate\SchoolTemplate.csproj", "{3B4819B2-8C4F-4737-86FA-FBA66B8A7782}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolBusiness", "SchoolBusiness\SchoolBusiness.csproj", "{18F3F9B5-26C7-44E2-80C2-36B774F9FD07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolBusiness", "SchoolBusiness\SchoolBusiness.csproj", "{18F3F9B5-26C7-44E2-80C2-36B774F9FD07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolRepository", "SchoolRepository\SchoolRepository.csproj", "{109564AF-CFA4-444B-BB8A-CDA3B8920242}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchoolRepository", "SchoolRepository\SchoolRepository.csproj", "{109564AF-CFA4-444B-BB8A-CDA3B8920242}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolEntities", "SchoolEntities\SchoolEntities.csproj", "{192A830C-ECB2-4858-B274-6DC1D41BC6F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{109564AF-CFA4-444B-BB8A-CDA3B8920242}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{109564AF-CFA4-444B-BB8A-CDA3B8920242}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{109564AF-CFA4-444B-BB8A-CDA3B8920242}.Release|Any CPU.Build.0 = Release|Any CPU
+		{192A830C-ECB2-4858-B274-6DC1D41BC6F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{192A830C-ECB2-4858-B274-6DC1D41BC6F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{192A830C-ECB2-4858-B274-6DC1D41BC6F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{192A830C-ECB2-4858-B274-6DC1D41BC6F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

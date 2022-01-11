@@ -90,3 +90,17 @@ figcaption {
         text-transform: uppercase !important;
         font-weight: 700 !important;
     }
+
+.body-content {
+    margin-top: 155px;
+}
+
+nav {
+    box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.75);
+    position: relative;
+    z-index: 10;
+}
+
+    nav .top_nav, nav .lng_wrap {
+        float: right;
+    }

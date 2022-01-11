@@ -15,7 +15,7 @@ using Microsoft.Extensions.Options;
 using SchoolBusiness.Interfaces;
 using SchoolBusiness.Services;
 using SchoolRepository.Configuration;
-using SchoolRepository.Inte3rfaces;
+using SchoolRepository.Interfaces;
 using SchoolRepository.Services;
 
 namespace SchoolTemplate
@@ -24,12 +24,12 @@ namespace SchoolTemplate
     {
         private IOptions<SchoolConfigOptions> schoolOptions;
 
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -45,11 +45,13 @@ namespace SchoolTemplate
 
             //adicionando o serviço de cookies na aplicação
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie();
-            
-            //Inicio da Injeção de Dependência
-            services.AddTransient<IHomeBusiness, HomeBusiness>();
-            services.AddTransient<IHomeRepository, HomeRepository>();
+                .AddCookie(option => 
+                {
+                    option.LoginPath = new PathString("/Account/NotifyUnLoggedUser");
+                    option.AccessDeniedPath = new PathString("/Account/NotifyUnAuthorizedUser");
+                });
+
+            SetDependencyInjections(services);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -90,6 +92,16 @@ namespace SchoolTemplate
         private IOptions<SchoolConfigOptions> GetIOptionsService(IServiceCollection services)
         {
             return services.BuildServiceProvider().GetService<IOptions<SchoolConfigOptions>>();
+        }
+
+        private void SetDependencyInjections(IServiceCollection services)
+        {
+            //Inicio da Injeção de Dependência
+            services.AddTransient<IBaseBusiness, BaseBusiness>();
+            services.AddTransient<IBaseRepository, BaseRepository>();
+
+            services.AddTransient<IHomeBusiness, HomeBusiness>();
+            services.AddTransient<IHomeRepository, HomeRepository>();
         }
     }
 }

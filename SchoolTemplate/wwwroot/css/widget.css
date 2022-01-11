@@ -234,7 +234,7 @@ footer .widget h5 {
     padding: 11.5px 0;
     text-align: center;
     width: 100%;
-    line-height: 16px;
+    /*line-height: 16px;*/
 }
 
     .copyright_des span {
@@ -253,6 +253,15 @@ footer .widget h5 {
             color: #fff;
             font-weight: bold;
         }
+
+.version_des {
+    /* float: left; */
+    padding: 11.5px 0;
+    /* text-align: center; */
+    /* width: 100%; */
+    /* line-height: 16px; */
+    color: #ccc;
+}
 
 .cards_wrap {
     float: left;
