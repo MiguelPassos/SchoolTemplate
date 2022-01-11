@@ -100,6 +100,9 @@ namespace SchoolTemplate
             services.AddTransient<IBaseBusiness, BaseBusiness>();
             services.AddTransient<IBaseRepository, BaseRepository>();
 
+            services.AddTransient<IAccountBusiness, AccountBusiness>();
+            services.AddTransient<IAccountRepository, AccountRepository>();
+
             services.AddTransient<IHomeBusiness, HomeBusiness>();
             services.AddTransient<IHomeRepository, HomeRepository>();
         }
