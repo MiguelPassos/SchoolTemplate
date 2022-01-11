@@ -24,7 +24,7 @@ namespace SchoolTemplate
     {
         private IOptions<SchoolConfigOptions> schoolOptions;
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
         {
