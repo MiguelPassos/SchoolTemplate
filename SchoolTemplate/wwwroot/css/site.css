@@ -48,11 +48,11 @@ svg, i {
     display: none;
 }
 
-.item {
+.myCarousel .item {
     background-color: #000;
 }
 
-    .item img {
+    .myCarousel .item img {
         opacity: 0.8;
     }
 

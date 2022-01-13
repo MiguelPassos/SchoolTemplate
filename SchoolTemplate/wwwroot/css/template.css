@@ -4713,37 +4713,6 @@ b {
         content: "";
     }
 
-.contact_2_headung {
-    float: left;
-    width: 100%;
-    text-align: left;
-    padding-bottom: 52px;
-    margin-bottom: 55px;
-    border-bottom: 1px solid #dedede;
-    position: relative;
-}
-
-    .contact_2_headung:before {
-        content: "";
-        left: 0;
-        right: 0;
-        bottom: -6px;
-        position: absolute;
-        height: 1px;
-        background: #dedede;
-    }
-
-    .contact_2_headung h3 {
-        text-transform: uppercase;
-        font-size: 24px;
-        font-weight: normal;
-        margin: 0px 0 20px;
-    }
-
-    .contact_2_headung p {
-        margin-bottom: 0;
-        font-weight: 300;
-    }
 /*google*/
 .location_des {
     background: #fff;
@@ -4866,7 +4835,7 @@ b {
 
     .des_3 > textarea {
         float: right;
-        overflow: hidden;
+        overflow: auto;
         width: 100%;
         margin: 0 0 30px 0;
         max-height: 102px;
@@ -5535,13 +5504,6 @@ b {
         border: 2px solid #d6d9dd;
     }
 
-.user-box .input-container .radio-value {
-    height: 20px;
-    width: 20px;
-    float: left;
-    background-size: 10px auto;
-    margin: 0px 10px 0px 0px;
-}
 /*.input-container span {
     float: right;
     font-size: 22px;
@@ -5792,11 +5754,6 @@ label {
     position: relative;
     vertical-align: -0.5em;
     width: 28px;
-}
-
-input:checked + .radio-value {
-    background-image: url(images/tick.png);
-    border-color: #88d3ff;
 }
 
 .kode_wrapper button.close {

@@ -25,15 +25,15 @@
                             <div class="dropdown-menu" style="padding: 10px; min-width: 220px;">
                                 <form asp-controller="Account" asp-action="LogIn" asp-antiforgery="true" method="post">
                                     <div class="form-group">
-                                        <input name="UserLogin" type="text" class="form-control" placeholder="Usuário" required="required">
+                                        <input name="UserLogin" type="text" class="form-control" placeholder="Usuário" required="required" autocomplete="on">
                                     </div>
                                     <div class="form-group">
-                                        <input name="Password" type="password" class="form-control" placeholder="Senha" required="required">
+                                        <input name="Password" type="password" class="form-control" placeholder="Senha" required="required" autocomplete="cc-csc">
                                     </div>
                                     <div class="form-group checkbox">
-                                        <label style="margin-left: 30px;">
+                                        <label style="margin-left: 25px;">
                                             <input type="checkbox" name="RememberMe" value="1" style="float: left;">
-                                            <span>Mantenha logado</span>
+                                            <span>Mantenha-me logado</span>
                                         </label>
                                     </div>
                                     <input id="btnLogin" type="submit" class="btn btn-primary btn-block" value="OK" style="background-color: #952843; border: solid 1px #460111;">

@@ -1,17 +1,91 @@
 ﻿@{
     ViewData["Title"] = "Contact";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+@section Scripts{ 
+    <script type="text/javascript" asp-append-version="true" src="~/js/contact.js"></script>
+}
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<!--Content Wrap Start-->
+<div class="kf_content_wrap">
+    <section style="background-color: #f7f7f7;">
+        <div class="container">
+            <!--CONTACT HEADING Start-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="contact_2_headung">
+                        <h3>Fale Conosco</h3>
+                        <p>Entre em contato conosco através do formulário ou e-mail que entraremos em contato para marcar uma visita, ou se preferir utilize um dos telefones abaixo.</p>
+                    </div>
+                </div>
+            </div>
+            <!--CONTACT HEADING END-->
+            <div class="contct_wrap">
+                <div class="row">
+                    <div class="col-md-7">
+                        <form>
+                            <div class="contact_des">
+                                <h4>Formulário de Contato</h4>
+                                <div class="inputs_des des_2">
+                                    <input type="text" placeholder="Nome"><i class="fa fa-user"></i>
+                                </div>
+
+                                <div class="inputs_des des_2">
+                                    <input class="cpf" type="text" placeholder="E-mail">
+                                    <i class="far fa-envelope"></i>
+                                </div>
+                                <div class="inputs_des des_2">
+                                    <input class="phone" type="text" placeholder="Telefone" maxlength="15">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div class="inputs_des des_3">
+                                    <textarea></textarea>
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <div>
+                                    <ul class="contact_meta">
+                                        <li style="text-transform: none;"><input type="checkbox" name="ciente" /> Estou de acordo com os termos da <a href="#">Política de Privacidade</a>.</li>
+                                    </ul>
+                                </div>
+                                <div class="inputs_des des_2">
+                                    <button>Enviar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="contact_heading">
+                            <h4>Informações de Contato</h4>
+                            <p>Venha conhecer nossa estrutura e nossa proposta pedagógica.</p>
+                        </div>
+                        <ul class="contact_meta">
+                            <li><i class="fa fa-home"></i>R. Guaipá, 1179 - Vila Leopoldina - São Paulo/SP</li>
+                            <li><i class="fa fa-phone"></i><a href="#"> (11)3834-3380 / (11)3836-6362 / (11)3831-0471</a></li>
+                            <li><i class="far fa-envelope"></i><a style="text-transform: none;" href="#">atendimento@colegiolema.com.br</a></li>
+                        </ul>
+                        <div class="contact_heading social">
+                            <h4>Nossas Redes Sociais</h4>
+                        </div>
+                        <ul class="cont_socil_meta">
+                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<div class="kf_content_wrap container">
+    <!--LOCATION MAP Wrap Start-->
+    <section style="width: 100%; padding: 0; border: solid 1px #999; box-shadow: 1px 1px 10px 0px; margin: 15px 0px;">
+        <div id="maps">
+            <div id="map_canvas">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.307815028706!2d-46.7359058850229!3d-23.521428784702724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cef8c6b6bfebb5%3A0xd8ae93d09089ed10!2sR.+Guaip%C3%A1%2C+1179+-+Vila+Leopoldina%2C+S%C3%A3o+Paulo+-+SP%2C+05089-001!5e0!3m2!1spt-BR!2sbr!4v1525735711526" frameborder="0" style="border:0; width: 100%; height: 400px;" allowfullscreen=""></iframe>
+            </div>
+        </div>
+    </section>
+    <!--LOCATION MAP Wrap END-->
+</div>
+<!--Content Wrap End-->

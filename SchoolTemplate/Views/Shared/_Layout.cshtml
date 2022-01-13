@@ -7,41 +7,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SchoolTemplate</title>
 
-    @RenderSection("Scripts", required: false)
-
     <!-- start Section Scripts -->
     <script src="~/lib/font-awesome/js/all.js"></script>
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/jquery.mask/jquery.mask.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     <!-- end Section Scripts -->
+
+    @RenderSection("Scripts", required: false)
+
     <!-- start Section Styles -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.css" />
     <link rel="stylesheet" href="~/style.css" />
     <!-- start Template Styles -->
+    <link rel="stylesheet" href="~/css/owl.carousel.css" />
     <link rel="stylesheet" href="~/css/template.css" />
     <link rel="stylesheet" href="~/css/color.css" />
     <link rel="stylesheet" href="~/css/shortcodes.css" />
     <link rel="stylesheet" href="~/css/typography.css" />
     <link rel="stylesheet" href="~/css/widget.css" />
 
-    @*<link rel="stylesheet" href="~/new-css/template.css" />
-    <link rel="stylesheet" href="~/new-css/color.css" />
-    <link rel="stylesheet" href="~/new-css/shortcodes.css" />
-    <link rel="stylesheet" href="~/new-css/typography.css" />
-    <link rel="stylesheet" href="~/new-css/widget.css" />*@
-    <!-- end Template Styles -->
-    <!-- end Section Styles -->
+    @RenderSection("Styles", required: false)
 
 </head>
 <body>
     <div class="kode_wrapper">
+        <partial name="_NavigationBar" />
+        <!--REGISTER MODAL START-->
+        <partial name="_Register" />
+        <!--REGISTER MODAL END-->
         <!--LOGOUT MODAL START-->
         <partial name="_Logout" />
         <!--LOGOUT MODAL END-->
-        <partial name="_NavigationBar" />
         <partial name="_CookieConsentPartial" />
 
         <div class="body-content">
@@ -52,9 +54,10 @@
             }
             @RenderBody()
             <hr />
+            <partial name="_Newsletter" />
             <footer>
             </footer>
-            <partial name="_Footer" />
+            <partial name="_Copyright" />
         </div>
     </div>
 </body>

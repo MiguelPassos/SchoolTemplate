@@ -75,7 +75,11 @@ footer {
 
 section,
 .kf_footer_bg {
-    padding: 70px 0px;
+    padding: 50px 0px;
+}
+
+.kf_content_wrap section {
+    /*margin: 10px 0px;*/
 }
 
 .inner-content-holder {
@@ -504,6 +508,8 @@ section,
     .lng_wrap .open .dropdown-menu {
         right: 0 !important;
         left: inherit;
+        box-shadow: 15px 15px 20px -10px #000;
+        -moz-box-shadow: 15px 15px 20px -10px #000;
     }
 
     .lng_wrap button .caret {
@@ -574,6 +580,7 @@ section,
             visibility: hidden;
             width: 250px;
             z-index: 10;
+            box-shadow: 15px 15px 20px -10px #000;
         }
 
             .nav_2 ul ul li {
@@ -5428,8 +5435,8 @@ b {
     float: left;
     width: 100%;
     text-align: left;
-    padding-bottom: 52px;
-    margin-bottom: 55px;
+    padding-bottom: 30px;
+    margin-bottom: 40px;
     border-bottom: 1px solid #dedede;
     position: relative;
 }
@@ -5564,6 +5571,15 @@ b {
     color: #bfbfbf;
 }
 
+.des_2 svg {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    margin-top: -7px;
+    font-size: 14px;
+    color: #bfbfbf;
+}
+
 .des_3 {
     margin: 0;
     position: relative;
@@ -5575,12 +5591,21 @@ b {
         right: 15px;
     }
 
+    .des_3 svg {
+        top: 15px;
+        position: absolute;
+        right: 15px;
+        color: #bfbfbfbf
+    }
+
     .des_3 > textarea {
         float: right;
-        overflow: hidden;
+        overflow: auto;
         width: 100%;
         margin: 0 0 30px 0;
         max-height: 102px;
+        padding: 3px 40px 5px 10px !important;
+        line-height: 20px !important;
     }
 
 .inputs_des.des_3 > span {
@@ -5974,9 +5999,6 @@ b {
 	  ==============================================================
 */
 
-
-
-
 /**/
 .btn-1 {
     border: 1px solid #fff;
@@ -6200,6 +6222,18 @@ b {
         height: 18px;
         left: 18px;
         top: 16px;
+        background-repeat: no-repeat;
+        background-position: bottom;
+        color: #a8b6c3;
+        z-index: 250;
+    }
+
+    .input-container svg {
+        position: absolute;
+        width: 16px;
+        height: 18px;
+        left: 10px;
+        top: 15px;
         background-repeat: no-repeat;
         background-position: bottom;
         color: #a8b6c3;
@@ -6506,7 +6540,7 @@ label {
 }
 
 input:checked + .radio-value {
-    background-image: url(images/tick.png);
+    background-image: url(../images/tick.png);
     border-color: #88d3ff;
 }
 
