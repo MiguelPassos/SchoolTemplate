@@ -1818,7 +1818,7 @@ section,
     transform: scale(1);
 }
 
-.edu2_faculty_des figcaption a {
+/*.edu2_faculty_des figcaption a {
     display: inline-block;
     width: 36px;
     height: 36px;
@@ -1831,7 +1831,8 @@ section,
     .edu2_faculty_des figcaption a:hover {
         background-color: #000;
         color: #fff;
-    }
+    }*/
+
 /*slider faculty member start*/
 .edu2_faculty_wrap .item {
     float: left;

@@ -65,7 +65,7 @@ namespace SchoolTemplate.Controllers
         {
             List<MenuModelView> menuModels = new List<MenuModelView>();
 
-            foreach (var item in menuItems)
+            foreach (var item in menuItems.OrderBy(x => x.Ordem))
             {
                 MenuModelView menuModel = new MenuModelView()
                 {

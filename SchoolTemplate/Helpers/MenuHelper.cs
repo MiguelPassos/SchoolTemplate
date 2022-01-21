@@ -12,18 +12,18 @@ namespace SchoolTemplate.Helpers
 {
     public class MenuHelper
     {
-        private static List<MenuModelView> UserMenuItems;
+        private static List<MenuModelView> _userMenuItems;
 
         public static void SetUserMenuItems(List<MenuModelView> menuModelViews)
         {
-            UserMenuItems = menuModelViews;
+            _userMenuItems = menuModelViews;
         }
 
         public static string GenerateMenu()
         {
             StringBuilder htmlMenu = new StringBuilder();
 
-            foreach (var menuItem in UserMenuItems)
+            foreach (var menuItem in _userMenuItems)
             {
                 htmlMenu.Append(MenuFor(menuItem));
             }

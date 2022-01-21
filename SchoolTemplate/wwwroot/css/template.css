@@ -1051,6 +1051,7 @@
 
     .edu2_faculty_des:hover {
         box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.2);
+        filter: grayscale(0.5);
     }
 
         .edu2_faculty_des:hover .edu2_faculty_des2 {
@@ -1102,17 +1103,18 @@
 
 .edu2_faculty_des figcaption a {
     display: inline-block;
-    width: 36px;
-    height: 36px;
-    line-height: 36px;
-    border-radius: 100%;
-    background-color: #fff;
     margin: 0 3px;
+    padding: 0px 10px;
+    border: solid 2px #fff;
+    font-weight: 600;
+    color: #fff !important;
+    text-shadow: 0 1px 2px rgb(0 0 0 / 100%);
+    box-shadow: 3px 3px 10px rgb(0 0 0 / 100%);
 }
 
-    .edu2_faculty_des figcaption a:hover {
+    .edu2_faculty_des figcaption a:hover {        
         background-color: #000;
-        color: #fff;
+        border: solid 2px #000;
     }
 /*slider faculty member start*/
 .edu2_faculty_wrap .item {
@@ -2313,6 +2315,10 @@
     }
 
     .edu2_event_wrap .readmore:hover i {
+        transform: translate(10px);
+    }
+
+    .edu2_event_wrap .readmore:hover svg {
         transform: translate(10px);
     }
 
@@ -5319,7 +5325,16 @@ b {
         vertical-align: middle;
     }
 
+    .readmore svg {
+        transition: all 0.3s ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+    }
+
     .readmore:hover i {
+        transform: translate(10px);
+    }
+
+    .readmore:hover svg {
         transform: translate(10px);
     }
 
