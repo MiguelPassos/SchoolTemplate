@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SchoolTemplate</title>
+    <title>Colégio Lema - @ViewData["Title"]</title>
 
     <!-- start Section Scripts -->
     <script src="~/lib/font-awesome/js/all.js"></script>
@@ -14,6 +14,8 @@
     <script src="~/lib/jquery.mask/jquery.mask.js"></script>
     <script src="~/js/owl.carousel.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/custom-functions.js" asp-append-version="true"></script>
+    <script src="~/js/maskers.js" asp-append-version="true"></script>
 
     <!-- end Section Scripts -->
 
@@ -38,12 +40,19 @@
 <body>
     <div class="kode_wrapper">
         <partial name="_NavigationBar" />
-        <!--REGISTER MODAL START-->
-        <partial name="_Register" />
-        <!--REGISTER MODAL END-->
-        <!--LOGOUT MODAL START-->
-        <partial name="_Logout" />
-        <!--LOGOUT MODAL END-->
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <!--REGISTER MODAL START-->
+            <partial name="_Register" />
+            <!--REGISTER MODAL END-->
+        }
+        else
+        {
+            <!--LOGOUT MODAL START-->
+            <partial name="_Logout" />
+            <!--LOGOUT MODAL END-->
+        }
+
         <partial name="_CookieConsentPartial" />
 
         <div class="body-content">

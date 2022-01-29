@@ -6,17 +6,17 @@
             <div class="user-box">
                 <h2>Registrar Usuário</h2>
                 <!--FORM FIELD START-->
-                <form class="form">
+                <form asp-controller="Account" asp-action="Register" asp-antiforgery="true" method="post">
                     <div class="input-container">
-                        <input type="text" placeholder="CPF">
+                        <input type="text" class="cpf" placeholder="CPF" required name="Document" alt="Informe o CPF previamente cadastrado no sistema.">
                         <i class="fas fa-id-card"></i>
                     </div>
                     <div class="input-container">
-                        <input type="text" placeholder="Usuário">
+                        <input type="text" class="username" placeholder="Usuário" required name="UserLogin" alt="Informe um nome de usuário a sua escolha.">
                         <i class="fa fa-user"></i>
                     </div>
                     <div class="input-container">
-                        <input type="password" placeholder="Senha" autocomplete="cc-csc">
+                        <input type="password" placeholder="Senha" required name="Password" autocomplete="cc-csc" alt="A senha deve conter: 6 a 8 caracteres, 1 letra maiúscula, 1 caracter especial e 1 número.">
                         <i class="fa fa-unlock"></i>
                     </div>
                     <div class="input-container">
@@ -29,10 +29,10 @@
                         </label>
                     </div>
                     <div class="input-container">
-                        <button class="btn-style">Registrar</button>
+                        <input id="btnRegister" type="submit" class="btn-style" value="Registrar">
                     </div>
                 </form>
-                <!--FORM FIELD END-->                
+                <!--FORM FIELD END-->
             </div>
             <div class="clearfix"></div>
         </div>

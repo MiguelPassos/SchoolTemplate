@@ -22,7 +22,7 @@
                                 <i class="fa fa-sign-in-alt"></i>Entrar
                                 <span class="caret"></span>
                             </button>
-                            <div class="dropdown-menu" style="padding: 10px; min-width: 220px;">
+                            <div id="divLogin" class="dropdown-menu" style="padding: 10px; min-width: 220px;">
                                 <form asp-controller="Account" asp-action="LogIn" asp-antiforgery="true" method="post">
                                     <div class="form-group">
                                         <input name="UserLogin" type="text" class="form-control" placeholder="Usuário" required="required" autocomplete="on">
@@ -38,7 +38,7 @@
                                     </div>
                                     <input id="btnLogin" type="submit" class="btn btn-primary btn-block" value="OK" style="background-color: #952843; border: solid 1px #460111;">
                                     <div class="text-center mt-2">
-                                        <a href="#">Esqueceu sua senha?</a>
+                                        <a href="#" data-toggle="modal" data-target="#reg-box">Esqueceu sua senha?</a>
                                     </div>
                                 </form>
                             </div>

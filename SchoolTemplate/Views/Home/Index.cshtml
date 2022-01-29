@@ -1,6 +1,7 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
+@model SchoolTemplate.Models.HomeViewModel
 
 <!--Partial View Carousel-->
 <partial name="PartialViews/_Carousel" />
@@ -9,4 +10,4 @@
 <partial name="PartialViews/_NewsEvents" />
 
 <!--Partial View Academic Members-->
-<partial name="PartialViews/_AcademicMembers" />
+<partial name="PartialViews/_AcademicMembers" model="Model.AcademicMembers" />

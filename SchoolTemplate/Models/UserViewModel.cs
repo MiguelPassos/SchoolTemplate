@@ -8,17 +8,30 @@ namespace SchoolTemplate.Models
 {
     public class UserViewModel
     {
-        public int ID{ get; set; }
+        private int id;
+        private string userName;
+        private string userLogin;
+        private string password;
+        private string document;
+        private bool rememberMe;
 
-        public string UserName { get; set; }
+        public int ID
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
+        public string UserName { get => userName; set => userName = value; }
 
         [Required(ErrorMessage = "Login não informado!")]
-        public string UserLogin { get; set; }
+        public string UserLogin { get => userLogin; set => userLogin = value; }
 
         [Required(ErrorMessage = "Senha não informada!")]
-        public string Password { get; set; }
+        public string Password { get => password; set => password = value; }
 
-        public bool RememberMe { get; set; }
+        public string Document { get => document; set => document = value.Replace("-","").Replace(".","");   }
+
+        public bool RememberMe { get => rememberMe; set => rememberMe = value; }
 
         public string Role { get; }
 

@@ -1,14 +1,18 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using SchoolBusiness.Interfaces;
 using SchoolEntities;
 using SchoolTemplate.Models;
 using SchoolTemplate.UtilityServices;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace SchoolTemplate.Controllers
@@ -20,6 +24,20 @@ namespace SchoolTemplate.Controllers
         public AccountController(IAccountBusiness accountBusiness, IBaseBusiness baseBusiness) : base(baseBusiness)
         {
             _accountBusiness = accountBusiness;
+        }
+
+        [HttpGet]
+        [ValidateAntiForgeryToken]
+        public IActionResult ValidateUser([FromQuery]string validationKey)
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        [ValidateAntiForgeryToken]
+        public IActionResult RecoveryAccess([FromQuery]string recoveryKey)
+        {
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
@@ -52,6 +70,36 @@ namespace SchoolTemplate.Controllers
         public async Task<IActionResult> LogOut()
         {
             await RegisterLogout();
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(UserViewModel userViewModel)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    Usuario user = _accountBusiness.GetUserData(userViewModel.Document);
+
+                    if (user == null)
+                        TempData["Message"] = ConfigAlert(Enuns.ETypeAlert.Info, "O CPF deve ser previamente cadastrado pelo administrador.");
+
+                    else if (!string.IsNullOrEmpty(user.Login))
+                        TempData["Message"] = ConfigAlert(Enuns.ETypeAlert.Info, "Usuário já registrado no sistema.");
+
+                    else
+                        await RegisterNewUser(userViewModel);
+                }
+                else
+                    TempData["Message"] = ConfigAlert(Enuns.ETypeAlert.Error, "Todos os campos devem ser informados.");
+            }
+            catch (Exception ex)
+            {
+                TempData["Message"] = ConfigAlert(Enuns.ETypeAlert.Error, $"Falha na tentativa de realizar o registro: {ex.Message}");
+            }
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -97,6 +145,33 @@ namespace SchoolTemplate.Controllers
         private async Task RegisterLogout()
         {
             await HttpContext.SignOutAsync();
+        }
+
+        private async Task RegisterNewUser(UserViewModel newUser) 
+        {
+            try
+            {
+                Usuario user = new Usuario()
+                {
+                    Login = newUser.UserLogin,
+                    Senha = newUser.Password,
+                    Token = GenerateUserToken(newUser),
+                };
+
+                _accountBusiness.RegisterNewUser(user, newUser.Document);
+                
+                if (newUser.RememberMe)
+                {
+                    user = _accountBusiness.GetUserData(newUser.UserLogin, newUser.Password);
+                    await RegisterLogin(new UserViewModel(user.NivelAcesso.Descricao) { ID = user.IdUsuario, UserName = string.Concat(user.Nome, " ", user.Sobrenome), RememberMe = Convert.ToBoolean(newUser.RememberMe) });
+                }
+                else
+                    TempData["Message"] = ConfigAlert(Enuns.ETypeAlert.Success, "Usuário registrado com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         #endregion

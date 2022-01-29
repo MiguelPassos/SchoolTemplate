@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.IdentityModel.Tokens;
 using SchoolBusiness.Interfaces;
 using SchoolEntities;
 using SchoolEntities.Enumerators;
@@ -11,9 +12,11 @@ using SchoolTemplate.Models;
 using SchoolTemplate.UtilityServices;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Reflection;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace SchoolTemplate.Controllers
@@ -105,6 +108,18 @@ namespace SchoolTemplate.Controllers
                     break;
             }
             return alertDiv;
+        }
+
+        public string GenerateUserToken(UserViewModel userViewModel)
+        {
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                        string.Concat(userViewModel.Document, DateTime.Now.Ticks)));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var jwtToken = new JwtSecurityToken(signingCredentials: creds);
+            var userConfirmationToken = new JwtSecurityTokenHandler().WriteToken(jwtToken);
+
+            return userConfirmationToken;
         }
 
         private List<MenuModelView> GetMenuItems()

@@ -5783,3 +5783,15 @@ label {
     text-align: center;
     color: #999;
 }
+
+.tooltip {
+    top: 131px;
+    left: 722px;
+    margin: 8px;
+    padding: 8px;
+    border: 1px solid #d6d9dd;
+    background-color: #fff;
+    position: absolute;
+    opacity: 0.9;
+    border-radius: 5px;
+}

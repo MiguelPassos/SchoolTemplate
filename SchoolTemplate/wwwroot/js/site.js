@@ -37,7 +37,25 @@ $(document).ready(function () {
         setup: function (_, ns, handle) {
             this.addEventListener("mousewheel", handle, { passive: true });
         }
-    };
+	};
+
+	$("#reg-box .cpf, #reg-box .username, #reg-box input[type='password']").bind({
+		mousemove: changeTooltipPosition,
+		mouseenter: showTooltip,
+		mouseleave: hideTooltip
+	});
+
+	$("#reg-box").on('hide.bs.modal', function () {
+		$(".user-box input[type='text'], .user-box input[type='password']").val('');
+	});
+
+	$("#dropdownMenu1").on('click', function () {
+		$("#divLogin input[type='text'], #divLogin input[type='password']").val('');
+	});
+
+	$('#divLogin a').on('click', function () {
+		$(document).click();
+	});
 });
 
 

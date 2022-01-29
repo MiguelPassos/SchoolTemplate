@@ -22,20 +22,29 @@ AS
 BEGIN
 	SET NOCOUNT ON;
 
-    SELECT
-		 USU.IdUsuario
-		,CASE WHEN (FUN.IdFuncionario IS NOT NULL) THEN FUN.Nome + ' ' + FUN.Sobrenome
-			  WHEN (RES.IdResponsavel IS NOT NULL) THEN RES.Nome + ' ' + RES.Sobrenome
-			  WHEN (ALU.IdAluno IS NOT NULL) THEN ALU.Nome + ' ' + ALU.Sobrenome 
-			  ELSE USU.Login END Nome
-		,USU.NivelAcesso
-		,NA.Sigla
-		,NA.Descricao 
+	MERGE TbUsuario AS DESTINO  
+    USING (SELECT @LOGIN, @SENHA) as ORIGEM (Login, Senha)  
+    ON (DESTINO.Login = ORIGEM.LOGIN AND DESTINO.Senha = ORIGEM.Senha)  
+    WHEN MATCHED THEN	
+        UPDATE SET UltimoAcesso = GETDATE();
+
+	SELECT
+		USU.IdUsuario,
+		CASE WHEN (FUN.IdFuncionario IS NOT NULL) THEN FUN.Nome
+			 WHEN (RES.IdResponsavel IS NOT NULL) THEN RES.Nome
+			 ELSE ALU.Nome END Nome,
+		CASE WHEN (FUN.IdFuncionario IS NOT NULL) THEN FUN.Sobrenome
+			 WHEN (RES.IdResponsavel IS NOT NULL) THEN RES.Sobrenome
+			 ELSE ALU.Sobrenome END Sobrenome,
+		USU.Login,
+		NIV.IdNivel,
+		NIV.Descricao,
+		NIV.Sigla
 	FROM TbUsuario USU WITH(NOLOCK)
-		INNER JOIN TbNivelAcesso NA WITH(NOLOCK) ON NA.IdNivel = USU.NivelAcesso
 		LEFT JOIN TbFuncionario FUN WITH(NOLOCK) ON FUN.Usuario = USU.IdUsuario
 		LEFT JOIN TbResponsavel RES WITH(NOLOCK) ON RES.Usuario = USU.IdUsuario
 		LEFT JOIN TbAluno ALU WITH(NOLOCK) ON ALU.Usuario = USU.IdUsuario
+		INNER JOIN TbNivelAcesso NIV WITH(NOLOCK) ON NIV.IdNivel = USU.NivelAcesso
 	WHERE USU.Login = @LOGIN AND USU.Senha = @SENHA
 END
 

@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using SchoolBusiness.Interfaces;
 using SchoolTemplate.Helpers;
 using SchoolEntities.Enumerators;
+using SchoolEntities;
 
 namespace SchoolTemplate.Controllers
 {
@@ -30,7 +31,18 @@ namespace SchoolTemplate.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            HomeViewModel homeViewModel = new HomeViewModel();
+            
+            homeViewModel.AcademicMembers.Add(new AcademicMemberModelView() { Name = "Danny Awesome", Function = "Manager", Description = "This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh...", Picture = "images/faculty-mb1.jpg" });
+            homeViewModel.AcademicMembers.Add(new AcademicMemberModelView() { Name = "Kimberly Richiez", Function = "Russian Teacher", Description = "This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh...", Picture = "images/faculty-mb2.jpg" });
+            homeViewModel.AcademicMembers.Add(new AcademicMemberModelView() { Name = "Dylan Taylor", Function = "English Teacher", Description = "This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh...", Picture = "images/faculty-mb3.jpg" });
+            homeViewModel.AcademicMembers.Add(new AcademicMemberModelView() { Name = "Simon Grishaber", Function = "Health Teacher", Description = "This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh...", Picture = "images/faculty-mb4.jpg" });
+            homeViewModel.AcademicMembers.Add(new AcademicMemberModelView() { Name = "Simon Grishaber", Function = "Health Teacher", Description = "This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh...", Picture = "images/faculty-mb5.jpg" });
+            homeViewModel.AcademicMembers.Add(new AcademicMemberModelView() { Name = "Simon Grishaber", Function = "Health Teacher", Description = "This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh...", Picture = "images/faculty-mb6.jpg" });
+            homeViewModel.AcademicMembers.Add(new AcademicMemberModelView() { Name = "Simon Grishaber", Function = "Health Teacher", Description = "This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh...", Picture = "images/faculty-mb7.jpg" });
+            homeViewModel.AcademicMembers.Add(new AcademicMemberModelView() { Name = "Simon Grishaber", Function = "Health Teacher", Description = "This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh...", Picture = "images/faculty-mb8.jpg" });
+
+            return View(homeViewModel);
         }
 
         public IActionResult Contact()
