@@ -597,6 +597,10 @@ section,
             visibility: visible;
         }
 
+        .nav_2 ul li:hover > ul, .nav_2 ul li:hover > a {
+            background-color: #f7f7f7;
+        }
+
         .nav_2 ul ul li a {
             font-size: 14px;
             text-transform: capitalize;

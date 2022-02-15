@@ -7,5 +7,6 @@ namespace SchoolRepository.Interfaces
 {
     public interface IHomeRepository
     {
+        DataTable GetRandomEmployeesProfiles();
     }
 }

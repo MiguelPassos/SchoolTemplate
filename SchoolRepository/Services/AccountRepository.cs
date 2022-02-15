@@ -46,10 +46,9 @@ namespace SchoolRepository.Services
                 finally
                 {
                     if (conn.State == ConnectionState.Open)
-                    {
                         conn.Close();
-                        conn.Dispose();
-                    }
+
+                    conn.Dispose();
                 }
             }
         }
@@ -85,10 +84,148 @@ namespace SchoolRepository.Services
                 finally
                 {
                     if (conn.State == ConnectionState.Open)
-                    {
                         conn.Close();
-                        conn.Dispose();
+
+                    conn.Dispose();
+                }
+            }
+        }
+
+        public DataTable GetUserDataByToken(string token)
+        {
+            using (var conn = new SqlConnection(_config.Value.LocalConnection))
+            {
+                try
+                {
+                    using (var cmd = new SqlCommand("SP_GET_USER_DATA_BY_TOKEN", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandTimeout = 0;
+                        cmd.Parameters.AddWithValue("@TOKEN", token);
+
+                        conn.Open();
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            using (var dt = new DataTable())
+                            {
+                                dt.Load(reader);
+                                return dt;
+                            }
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    if (conn.State == ConnectionState.Open)
+                        conn.Close();
+
+                    conn.Dispose();
+                }
+            }
+        }
+
+        public DataTable GetUserDataByLogin(string login)
+        {
+            using (var conn = new SqlConnection(_config.Value.LocalConnection))
+            {
+                try
+                {
+                    using (var cmd = new SqlCommand("SP_GET_USER_DATA_BY_LOGIN", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandTimeout = 0;
+                        cmd.Parameters.AddWithValue("@LOGIN", login);
+
+                        conn.Open();
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            using (var dt = new DataTable())
+                            {
+                                dt.Load(reader);
+                                return dt;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    if (conn.State == ConnectionState.Open)
+                        conn.Close();
+
+                    conn.Dispose();
+                }
+            }
+        }
+
+        public void UpdateUserAccess(Usuario user)
+        {
+            using (var conn = new SqlConnection(_config.Value.LocalConnection))
+            {
+                try
+                {
+                    using (var cmd = new SqlCommand("SP_UPDATE_USER_ACCESS", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandTimeout = 0;
+                        cmd.Parameters.AddWithValue("@ID", user.IdUsuario);
+                        cmd.Parameters.AddWithValue("@LOGIN", user.Login);
+                        cmd.Parameters.AddWithValue("@SENHA", user.Senha);
+                        cmd.Parameters.AddWithValue("@TOKEN", user.Token);
+
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    if (conn.State == ConnectionState.Open)
+                        conn.Close();
+
+                    conn.Dispose();
+                }
+            }
+        }
+
+        public void ActivateUserAccount(Usuario user)
+        {
+            using (var conn = new SqlConnection(_config.Value.LocalConnection))
+            {
+                try
+                {
+                    using (var cmd = new SqlCommand("SP_ACTIVATE_USER_ACCESS", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandTimeout = 0;
+                        cmd.Parameters.AddWithValue("@ID", user.IdUsuario);
+
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    if (conn.State == ConnectionState.Open)
+                        conn.Close();
+
+                    conn.Dispose();
                 }
             }
         }
@@ -119,10 +256,9 @@ namespace SchoolRepository.Services
                 finally
                 {
                     if (conn.State == ConnectionState.Open)
-                    {
                         conn.Close();
-                        conn.Dispose();
-                    }
+
+                    conn.Dispose();
                 }
             }
         }

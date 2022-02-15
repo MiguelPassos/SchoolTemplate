@@ -9,6 +9,14 @@ namespace SchoolRepository.Interfaces
 
         DataTable GetUserData(string document);
 
+        DataTable GetUserDataByToken(string token);
+
+        DataTable GetUserDataByLogin(string login);
+
+        void UpdateUserAccess(Usuario user);
+
+        void ActivateUserAccount(Usuario user);
+
         void RegisterNewUser(Usuario user, string doc);
     }
 }

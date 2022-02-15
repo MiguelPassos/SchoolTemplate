@@ -31,7 +31,7 @@ namespace SchoolTemplate.Controllers
         {
             base.OnActionExecuting(context);
             ViewBag.Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-
+            
             List<MenuItem> userMenu;
             int idUser = 0;
             
@@ -43,7 +43,7 @@ namespace SchoolTemplate.Controllers
             MenuHelper.SetUserMenuItems(ConvertMenuItemsToMenuModelView(userMenu));
         }
 
-        public void OrganizeSubmenus(ref List<MenuItem> menuItems)
+        protected void OrganizeSubmenus(ref List<MenuItem> menuItems)
         {
             List<MenuItem> menuParents = new List<MenuItem>();
             List<MenuItem> menuChildren = new List<MenuItem>();
@@ -64,7 +64,7 @@ namespace SchoolTemplate.Controllers
             menuItems = menuParents;
         }
 
-        public List<MenuModelView> ConvertMenuItemsToMenuModelView(List<MenuItem> menuItems)
+        protected List<MenuModelView> ConvertMenuItemsToMenuModelView(List<MenuItem> menuItems)
         {
             List<MenuModelView> menuModels = new List<MenuModelView>();
 
@@ -87,10 +87,10 @@ namespace SchoolTemplate.Controllers
             return menuModels;
         }
 
-        public static string ConfigAlert(ETypeAlert type, string message)
+        protected static string ConfigAlert(ETypeAlert type, string message)
         {
-            string alertDiv = @"<div class=""alert {0}"" role=""alert"">
-                                    <i class=""fa {1}""></i>" + message +
+            string alertDiv = @"<div class='alert {0}' role='alert'>
+                                    <i class='fa {1}'></i>" + message +
                                  "</div>";
             switch (type)
             {
@@ -110,16 +110,57 @@ namespace SchoolTemplate.Controllers
             return alertDiv;
         }
 
-        public string GenerateUserToken(UserViewModel userViewModel)
+        protected static string ConfigMessage(string title, string message) 
+        {
+            string messageModal = @"<div class='modal fade' id='message-box' tabindex='- 1' role='dialog'>
+                                        <div class='modal-dialog'>
+                                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>×</span></button>
+                                            <div class='modal-content'>
+                                                <!--MODAL MESSAGE START-->
+                                                <div class='user-box'>
+                                                    <h2>{0}</h2>
+                                                    <!--MODAL MESSAGE BODY START-->
+                                                    <div class='input-container' style='border: solid 2px #c1c1c1; background-color: #f5f5f5; border-radius: 5px;'>
+                                                        <span style='font-weight: 400;'>{1}</span>
+                                                    </div>                    
+                                                    <div class='input-container'>
+                                                        <input type='button' class='btn-style' value='OK' data-dismiss='modal'>
+                                                    </div>
+                                                    <!--MODAL MESSAGE BODY END-->
+                                                </div>
+                                                <div class='clearfix'></div>
+                                            </div>
+                                            <div class='clearfix'></div>
+                                        </div>
+                                    </div>";
+
+            messageModal = string.Format(messageModal, string.IsNullOrEmpty(title) ? "Mensagem do Sistema" : title, message);
+
+            return messageModal;
+        }
+
+        protected string GenerateUserToken(string userDocument)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-                        string.Concat(userViewModel.Document, DateTime.Now.Ticks)));
+                        string.Concat(userDocument, DateTime.Now.Ticks)));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var jwtToken = new JwtSecurityToken(signingCredentials: creds);
             var userConfirmationToken = new JwtSecurityTokenHandler().WriteToken(jwtToken);
 
             return userConfirmationToken;
+        }
+
+        protected async Task SendEmailMessage(string address, string subject, string message)
+        {
+            MensagemEmail mensagemEmail = new MensagemEmail() 
+            {
+                Endereco = address,
+                Assunto = subject,
+                Mensagem = message
+            };
+
+            await _baseBusiness.SendEmailAsync(mensagemEmail);
         }
 
         private List<MenuModelView> GetMenuItems()

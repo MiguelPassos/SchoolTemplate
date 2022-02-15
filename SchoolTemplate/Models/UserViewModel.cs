@@ -12,6 +12,7 @@ namespace SchoolTemplate.Models
         private string userName;
         private string userLogin;
         private string password;
+        private string token;
         private string document;
         private bool rememberMe;
 
@@ -28,6 +29,8 @@ namespace SchoolTemplate.Models
 
         [Required(ErrorMessage = "Senha não informada!")]
         public string Password { get => password; set => password = value; }
+
+        public string Token { get => token; set => token = value; }
 
         public string Document { get => document; set => document = value.Replace("-","").Replace(".","");   }
 

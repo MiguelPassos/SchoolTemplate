@@ -2,11 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SchoolBusiness.Interfaces
 {
-    public interface IHomeBusiness
+    public interface IEmailBusiness
     {
-        List<PerfilFuncionario> GetRandomEmployeesProfiles();
+        Task SendEmailAsync(MensagemEmail email);
     }
 }

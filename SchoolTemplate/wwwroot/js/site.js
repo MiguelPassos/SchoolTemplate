@@ -3,9 +3,9 @@
 
 // Write your JavaScript code.
 $(document).ready(function () {
-    $(".alert").delay(1000).slideDown(200).delay(4000).slideUp(200, function () {
-        //$(this).alert('close');
-    });
+    $(".alert").delay(1000).slideDown(200).delay(6000).slideUp(200);
+
+	document.addEventListener('contextmenu', event => event.preventDefault());
 
     jQuery.event.special.touchstart = {
         setup: function (_, ns, handle) {
@@ -45,7 +45,7 @@ $(document).ready(function () {
 		mouseleave: hideTooltip
 	});
 
-	$("#reg-box").on('hide.bs.modal', function () {
+	$(".modal").on('hide.bs.modal', function () {
 		$(".user-box input[type='text'], .user-box input[type='password']").val('');
 	});
 
@@ -56,6 +56,9 @@ $(document).ready(function () {
 	$('#divLogin a').on('click', function () {
 		$(document).click();
 	});
+
+	if ($('#message-box') != undefined)
+		$('#message-box').modal();
 });
 
 

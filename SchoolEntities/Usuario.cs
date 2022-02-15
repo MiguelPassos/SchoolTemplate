@@ -22,6 +22,10 @@ namespace SchoolEntities
 
         public string Sobrenome { get; set; }
 
+        public string Email { get; set; }
+
+        public string Documento { get; set; }
+
         public string Token { get; set; }
 
         public NivelAcesso NivelAcesso { get; set; }

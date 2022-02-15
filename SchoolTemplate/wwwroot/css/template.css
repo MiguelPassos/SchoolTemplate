@@ -5795,3 +5795,12 @@ label {
     opacity: 0.9;
     border-radius: 5px;
 }
+
+#divLogin input[type="submit"] {
+    background-color: #952843;
+    border: solid 1px #460111;
+}
+
+#divLogin a:hover {
+    color: #e79800;
+}

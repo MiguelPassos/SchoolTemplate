@@ -16,19 +16,18 @@ namespace SchoolTemplate.Helpers
                                                   <figure>
                                                       <img src='{0}' alt='' />
                                                       <figcaption>
-                                                          <a href='#'>Ver Perfil</i></a>
+                                                          <a href='/Teachers/Profile/{1}'>Ver Perfil</i></a>
                                                       </figcaption>
                                                   </figure>
                                                   <div class='edu2_faculty_des2'>
-                                                      <h6><a href='#'>{1}</a></h6>
-                                                      <strong>{2}</strong>
-                                                      <p>{3}</p>
+                                                      <h6><a href='#'>{2}</a></h6>
+                                                      <strong>{3}</strong>                                                      
                                                   </div>
                                               </div>                 
                                           </div>";
 
             htmlAcademicMember = string.Format(htmlAcademicMember.ToString(),
-                memberModelView.Picture, memberModelView.Name, memberModelView.Function, memberModelView.Description);
+                memberModelView.Picture, memberModelView.ID, memberModelView.Name, memberModelView.Function);
 
             return htmlAcademicMember;
         }

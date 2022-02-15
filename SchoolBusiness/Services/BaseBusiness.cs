@@ -4,12 +4,21 @@ using SchoolRepository.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SchoolBusiness.Services
 {
     public class BaseBusiness : IBaseBusiness
     {
+        private const string smtp = "smtp-mail.outlook.com";
+
+        private const string emailRemetente = "no-reply@colegiolema.com.br";
+
+        private const int porta = 587;
+
         private readonly IBaseRepository _repository;
 
         public BaseBusiness(IBaseRepository repository) => _repository = repository;
@@ -43,6 +52,32 @@ namespace SchoolBusiness.Services
                 }
 
                 return userMenuItems;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task SendEmailAsync(MensagemEmail email)
+        {
+            try
+            {
+                using (var client = new SmtpClient(smtp, porta))
+                {
+                    client.Credentials = new NetworkCredential("colegiolema@servidor.com.br", "SenhaDoServidorSMTP");
+                    client.EnableSsl = true;
+
+                    var message = new MailMessage();
+                    message.From = new MailAddress("no-reply@colegiolema.com.br", "Colégio Lema");
+                    message.To.Add(new MailAddress(email.Endereco));
+                    message.Subject = email.Assunto;
+                    message.Body = email.Mensagem;
+                    message.IsBodyHtml = true;
+                    message.Priority = MailPriority.High;
+
+                    await client.SendMailAsync(message);
+                };
             }
             catch (Exception ex)
             {

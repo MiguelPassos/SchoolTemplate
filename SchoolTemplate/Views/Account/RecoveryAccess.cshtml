@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Redefinição de Acesso";
+}
+
+@section Scripts{
+    <!--<script type="text/javascript" asp-append-version="true" src="~/js/recoveryAccess.js"></script>-->
+}
+
+@model SchoolTemplate.Models.UserViewModel
+<!--Content Wrap Start-->
+<div class="kf_content_wrap">
+    <section style="background-color: #f7f7f7;">
+        <div class="container">
+            <!--CONTACT HEADING Start-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="contact_2_headung">
+                        <h3>Redefinição de Acesso</h3>
+                        <p>Por favor, utilize o formulário abaixo para redefinir os seus dados de acesso ou entre em contato conosco através dos telefones.</p>
+                    </div>
+                </div>
+            </div>
+            <!--CONTACT HEADING END-->
+            <div class="contct_wrap">
+                <div class="row">
+                    <div class="col-md-7">
+                        <!-- RESET ACCESS FORM START -->
+                        <form asp-controller="Account" asp-action="ResetAccess" asp-antiforgery="true" method="post">
+                            <div class="input-container">
+                                <input type="hidden" name="ID" value="@Model.ID" />
+                                <input type="hidden" name="Token" value="@Model.Token" />
+                                <input type="text" class="username" placeholder="Usuário" required name="UserLogin" alt="Informe um nome de usuário a sua escolha.">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <div class="input-container">
+                                <input type="password" placeholder="Senha" required name="Password" autocomplete="cc-csc" alt="A senha deve conter: 6 a 8 caracteres, 1 letra maiúscula, 1 caracter especial e 1 número.">
+                                <i class="fa fa-unlock"></i>
+                            </div>
+                            <div class="input-container">
+                                <input type="password" placeholder="Redigite a Senha" required autocomplete="cc-csc" alt="A senha deve conter: 6 a 8 caracteres, 1 letra maiúscula, 1 caracter especial e 1 número.">
+                                <i class="fa fa-unlock"></i>
+                            </div>
+                            <div class="input-container">
+                                <input id="btnSave" type="submit" class="btn-style" value="Salvar">
+                            </div>
+                        </form>
+                        <!-- RESET ACCESS FORM END -->
+                    </div>
+                    <div class="col-md-5">
+                        <div class="contact_heading">
+                            <h4>Informações de Contato</h4>
+                            <p>Venha conhecer nossa estrutura e nossa proposta pedagógica.</p>
+                        </div>
+                        <ul class="contact_meta">
+                            <li><i class="fa fa-home"></i>R. Guaipá, 1179 - Vila Leopoldina - São Paulo/SP</li>
+                            <li><i class="fa fa-phone"></i><a href="#"> (11)3834-3380 / (11)3836-6362 / (11)3831-0471</a></li>
+                            <li><i class="far fa-envelope"></i><a style="text-transform: none;" href="#">atendimento@colegiolema.com.br</a></li>
+                        </ul>
+                        <div class="contact_heading social">
+                            <h4>Nossas Redes Sociais</h4>
+                        </div>
+                        <ul class="cont_socil_meta">
+                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

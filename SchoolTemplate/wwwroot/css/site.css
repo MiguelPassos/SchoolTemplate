@@ -21,6 +21,12 @@ for details on configuring this project to bundle and minify static web assets. 
 /* Make .svg files in the carousel display properly in older browsers */
 .carousel-inner .item img[src$=".svg"] {
     width: 100%;
+    filter: opacity(0.9);
+}
+
+.carousel-inner .item img {
+    width: 100%;
+    filter: opacity(0.9);
 }
 
 /* QR code generator */
@@ -48,13 +54,13 @@ svg, i {
     display: none;
 }
 
-.myCarousel .item {
+/*.myCarousel .item {
     background-color: #000;
 }
 
     .myCarousel .item img {
         opacity: 0.8;
-    }
+    }*/
 
 figcaption {
     margin: 25px 0;
@@ -103,4 +109,12 @@ nav {
 
     nav .top_nav, nav .lng_wrap {
         float: right;
+    }
+
+#cookieConsent {
+    background: linear-gradient(to bottom, #353535 0%,#716f6f 100%);
+}
+
+    #cookieConsent p, #cookieConsent span {
+        color: #fff;
     }

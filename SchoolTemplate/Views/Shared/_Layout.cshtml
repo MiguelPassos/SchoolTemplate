@@ -4,6 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Colégio Lema - @ViewData["Title"]</title>
 
@@ -45,6 +46,9 @@
             <!--REGISTER MODAL START-->
             <partial name="_Register" />
             <!--REGISTER MODAL END-->
+            <!--FORGOT ACCESS MODAL START-->
+            <partial name="_Forgot" />
+            <!--FORGOT ACCESS MODAL END-->
         }
         else
         {
@@ -57,10 +61,15 @@
 
         <div class="body-content">
 
+            @if (TempData["Alert"] != null)
+            {
+                @Html.Raw(TempData["Alert"])
+            }
             @if (TempData["Message"] != null)
             {
                 @Html.Raw(TempData["Message"])
             }
+
             @RenderBody()
             <hr />
             <partial name="_Newsletter" />
