@@ -47,5 +47,37 @@ namespace SchoolBusiness.Services
                 throw ex;
             }
         }
+
+        public List<Evento> GetLatestFourEvents()
+        {
+            try
+            {
+                List<Evento> listEvento = new List<Evento>();
+
+                var dataTable = _repository.GetLatestFourEvents();
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    Evento evento = new Evento();
+
+                    evento.IdEvento = Convert.ToInt32(row["IdEvento"]);
+                    evento.Titulo = row["Titulo"].ToString();
+                    evento.Descricao = row["Descricao"].ToString();
+                    evento.Imagem = row["UrlImagem"].ToString();
+                    evento.DataInicio = Convert.ToDateTime(row["DataInicio"]);
+                    evento.DataTermino = Convert.ToDateTime(row["DataTermino"]);
+                    evento.DataCriacao = Convert.ToDateTime(row["DataCriacao"]);
+                    evento.Autor = row["Autor"].ToString();
+
+                    listEvento.Add(evento);
+                }
+
+                return listEvento;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -24,6 +25,21 @@ namespace SchoolTemplate.Controllers
         public AccountController(IAccountBusiness accountBusiness, IBaseBusiness baseBusiness) : base(baseBusiness) => _accountBusiness = accountBusiness;
 
         [HttpGet]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult Profile(int id)
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [AutoValidateAntiforgeryToken]
+        [Authorize(Roles = "Administrador")]
+        public IActionResult Profiles()
+        {
+            return View();
+        }
+
+        [HttpGet]
         [ValidateAntiForgeryToken]
         public IActionResult ValidateUser([FromQuery] string validationKey)
         {
@@ -43,6 +59,7 @@ namespace SchoolTemplate.Controllers
         }
 
         [HttpGet]
+        [AutoValidateAntiforgeryToken]
         public IActionResult RecoveryAccess([FromQuery] string recoveryKey)
         {
             try
@@ -178,6 +195,7 @@ namespace SchoolTemplate.Controllers
         }
 
         [HttpGet]
+        [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> LogOut()
         {
             await RegisterLogout();
@@ -222,6 +240,7 @@ namespace SchoolTemplate.Controllers
         }
 
         [HttpGet]
+        [AutoValidateAntiforgeryToken]
         public IActionResult NotifyUnAuthorizedUser()
         {
             TempData["Alert"] = ConfigAlert(Enuns.ETypeAlert.Error, "Usuário sem permissão de acesso a página.");
@@ -229,6 +248,7 @@ namespace SchoolTemplate.Controllers
         }
 
         [HttpGet]
+        [AutoValidateAntiforgeryToken]
         public IActionResult NotifyUnLoggedUser()
         {
             TempData["Alert"] = ConfigAlert(Enuns.ETypeAlert.Error, "Usuário não logado no sistema.");

@@ -23,24 +23,20 @@ namespace SchoolTemplate.Controllers
     {
         private readonly IHomeBusiness _homeBusiness;
 
-        public HomeController(IHomeBusiness homeBusiness, IBaseBusiness baseBusiness) : base (baseBusiness)
-        {
-            _homeBusiness = homeBusiness;
-        }
+        public HomeController(IHomeBusiness homeBusiness, IBaseBusiness baseBusiness) : base (baseBusiness) => _homeBusiness = homeBusiness;
 
         [HttpGet]
-        public IActionResult Index([FromQuery]string recoveryKey)
+        public IActionResult Index()
         {
-            if (!string.IsNullOrEmpty(recoveryKey))
-                return PartialView("_ResetAccess", new UserViewModel());
-
             HomeViewModel homeViewModel = new HomeViewModel();
 
+            homeViewModel.NewsEvents = GetLatestEvents().OrderBy(x => x.EventDate).ToList();
             homeViewModel.AcademicMembers = GetAcademicMembers();
 
             return View(homeViewModel);
         }
 
+        [HttpGet]
         public IActionResult Contact()
         {
             return View();
@@ -82,6 +78,37 @@ namespace SchoolTemplate.Controllers
                 }
 
                 return listMembersModelView;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private List<EventViewModel> GetLatestEvents()
+        {
+            List<EventViewModel> eventList = new List<EventViewModel>();
+
+            try
+            {
+                var events = _homeBusiness.GetLatestFourEvents();
+
+                foreach (var evt in events)
+                {
+                    EventViewModel eventViewModel = new EventViewModel()
+                    {
+                        ID = evt.IdEvento,
+                        Description = evt.Titulo,
+                        UriImage = evt.Imagem,
+                        EventDate = evt.DataInicio,
+                        CreationDate = evt.DataCriacao,
+                        Author = evt.Autor,
+                    };
+
+                    eventList.Add(eventViewModel);
+                }
+
+                return eventList;
             }
             catch (Exception ex)
             {

@@ -1208,6 +1208,7 @@
 .edu2_event_des h4 {
     font-weight: bold;
     margin-bottom: 29px;
+    text-transform: capitalize;
 }
 
 .edu2_event_des p {
@@ -3464,7 +3465,7 @@
     float: left;
     width: 100%;
     border: 1px solid #e2e2e2;
-    margin-bottom: 70px;
+    /*margin-bottom: 70px;*/
 }
 
 .skill_progress_des {

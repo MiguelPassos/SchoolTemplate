@@ -1,4 +1,6 @@
-﻿<!-- NOVIDADES & EVENTOS INÍCIO -->
+﻿@using SchoolTemplate.Helpers
+@model List<SchoolTemplate.Models.EventViewModel>
+<!-- NOVIDADES & EVENTOS INÍCIO -->
 <section class="edu2_new_wrap">
     <div class="container">
         <!-- HEADING 2 START-->
@@ -8,116 +10,18 @@
             </div>
         </div>
         <!-- HEADING 2 END-->
-        <div class="row">
-            <!-- EDU2 NEW DES START-->
+        <!-- EDU2 NEW DES START-->
+        @foreach (var evt in Model)
+        {
             <div class="col-md-6">
                 <div class="edu2_new_des">
                     <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <div class="edu2_event_des">
-                                <h4>Dec</h4>
-                                <p>Lorem Lipsum Proin Gravide Nibh Vel Velit</p>
-                                <ul class="post-option">
-                                    <li>By<a href="#">Admin</a></li>
-                                    <li>03/12/2015</li>
-                                    <li><a href="#">21 Comments</a></li>
-                                </ul>
-                                <a href="#" class="readmore">read more<i class="fa fa-long-arrow-alt-right"></i></a>
-                                <span>24</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6 thumb">
-                            <figure>
-                                <img src="~/images/news1.jpg" alt="">
-                                @*<figcaption><a href="blog-detail.html"><i class="fa fa-plus"></i></a></figcaption>*@
-                            </figure>
-                        </div>
+                        @Html.Raw(HomeHelper.GenerateEventInfoFor(evt, Model.IndexOf(evt)))
                     </div>
                 </div>
             </div>
-            <!-- EDU2 NEW DES END-->
-            <!-- EDU2 NEW DES START-->
-            <div class="col-md-6">
-                <div class="edu2_new_des">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6 thumb">
-                            <figure>
-                                <img src="~/images/news2.jpg" alt="">
-                                @*<figcaption><a href="blog-detail.html"><i class="fa fa-plus"></i></a></figcaption>*@
-                            </figure>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="edu2_event_des text-right">
-                                <h4>Dec</h4>
-                                <p>Lorem Lipsum Proin Gravide Nibh Vel Velit</p>
-                                <ul class="post-option">
-                                    <li>By<a href="#">Admin</a></li>
-                                    <li>03/12/2015</li>
-                                    <li><a href="#">21 Comments</a></li>
-                                </ul>
-                                <a href="#" class="readmore">read more<i class="fa fa-long-arrow-alt-right"></i></a>
-                                <span>03</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- EDU2 NEW DES END-->
-            <!-- EDU2 NEW DES START-->
-            <div class="col-md-6">
-                <div class="edu2_new_des">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <div class="edu2_event_des">
-                                <h4>Dec</h4>
-                                <p>Lorem Lipsum Proin Gravide Nibh Vel Velit</p>
-                                <ul class="post-option">
-                                    <li>By<a href="#">Admin</a></li>
-                                    <li>03/12/2015</li>
-                                    <li><a href="#">21 Comments</a></li>
-                                </ul>
-                                <a href="#" class="readmore">read more<i class="fa fa-long-arrow-alt-right"></i></a>
-                                <span>31</span>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6 thumb">
-                            <figure>
-                                <img src="~/images/news3.jpg" alt="">
-                                @*<figcaption><a href="blog-detail.html"><i class="fa fa-plus"></i></a></figcaption>*@
-                            </figure>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- EDU2 NEW DES END-->
-            <!-- EDU2 NEW DES START-->
-            <div class="col-md-6">
-                <div class="edu2_new_des">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6 thumb">
-                            <figure>
-                                <img src="~/images/news4.jpg" alt="">
-                                @*<figcaption><a href="blog-detail.html"><i class="fa fa-plus"></i></a></figcaption>*@
-                            </figure>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="edu2_event_des text-right">
-                                <h4>Dec</h4>
-                                <p>Lorem Lipsum Proin Gravide Nibh Vel Velit</p>
-                                <ul class="post-option">
-                                    <li>By<a href="#">Admin</a></li>
-                                    <li>03/12/2015</li>
-                                    <li><a href="#">21 Comments</a></li>
-                                </ul>
-                                <a href="#" class="readmore">read more<i class="fa fa-long-arrow-alt-right"></i></a>
-                                <span>11</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- EDU2 NEW DES END-->
-        </div>
+        }
+        <!-- EDU2 NEW DES END-->
     </div>
 </section>
 <!-- NOVIDADES & EVENTOS FIM -->

@@ -65,11 +65,11 @@ namespace SchoolBusiness.Services
             {
                 using (var client = new SmtpClient(smtp, porta))
                 {
-                    client.Credentials = new NetworkCredential("colegiolema@servidor.com.br", "SenhaDoServidorSMTP");
+                    client.Credentials = new NetworkCredential("credencial@emailserver.com", "YourPassword");
                     client.EnableSsl = true;
 
                     var message = new MailMessage();
-                    message.From = new MailAddress("no-reply@colegiolema.com.br", "Colégio Lema");
+                    message.From = new MailAddress("myemail@emailserver.com", "Nome Exibição");
                     message.To.Add(new MailAddress(email.Endereco));
                     message.Subject = email.Assunto;
                     message.Body = email.Mensagem;
@@ -77,6 +77,7 @@ namespace SchoolBusiness.Services
                     message.Priority = MailPriority.High;
 
                     await client.SendMailAsync(message);
+                    client.Dispose();
                 };
             }
             catch (Exception ex)

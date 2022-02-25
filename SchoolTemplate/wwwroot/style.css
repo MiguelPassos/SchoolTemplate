@@ -4181,7 +4181,7 @@ section,
     float: left;
     width: 100%;
     border: 1px solid #e2e2e2;
-    margin-bottom: 70px;
+    /*margin-bottom: 70px;*/
 }
 
 .skill_progress_des {
@@ -6561,3 +6561,11 @@ input:checked + .radio-value {
     text-align: center;
     color: #999;
 }
+
+.teacher_thumb figure{
+    max-height: 405px;
+}
+
+    .teacher_thumb figure img {
+        object-fit: cover;
+    }

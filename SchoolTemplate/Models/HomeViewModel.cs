@@ -7,13 +7,13 @@ namespace SchoolTemplate.Models
 {
     public class HomeViewModel
     {
-        public List<object> NewsEvents { get; set; }
+        public List<EventViewModel> NewsEvents { get; set; }
 
         public List<AcademicMemberModelView> AcademicMembers { get; set; }
 
         public HomeViewModel()
         {
-            NewsEvents = new List<object>();
+            NewsEvents = new List<EventViewModel>();
             AcademicMembers = new List<AcademicMemberModelView>();
         }
     }

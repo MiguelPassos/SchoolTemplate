@@ -8,5 +8,7 @@ namespace SchoolRepository.Interfaces
     public interface IHomeRepository
     {
         DataTable GetRandomEmployeesProfiles();
+
+        DataTable GetLatestFourEvents();
     }
 }

@@ -118,3 +118,11 @@ nav {
     #cookieConsent p, #cookieConsent span {
         color: #fff;
     }
+
+.kf_content_wrap section:nth-child(2) {
+    background-color: #f8f8f8;
+}
+
+.kf_content_wrap .skill_progress_wrap{
+    background-color: #fff;
+}

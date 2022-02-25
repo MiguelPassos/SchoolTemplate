@@ -8,5 +8,7 @@ namespace SchoolBusiness.Interfaces
     public interface IHomeBusiness
     {
         List<PerfilFuncionario> GetRandomEmployeesProfiles();
+
+        List<Evento> GetLatestFourEvents();
     }
 }
