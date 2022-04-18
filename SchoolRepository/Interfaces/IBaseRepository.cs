@@ -7,6 +7,8 @@ namespace SchoolRepository.Interfaces
 {
     public interface IBaseRepository
     {
+        DataTable GetConfigurations();
+
         DataTable GetUserMenu(int idUser);
     }
 }

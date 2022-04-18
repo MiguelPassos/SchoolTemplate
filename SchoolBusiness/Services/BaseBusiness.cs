@@ -13,15 +13,42 @@ namespace SchoolBusiness.Services
 {
     public class BaseBusiness : IBaseBusiness
     {
-        private const string smtp = "smtp-mail.outlook.com";
-
-        private const string emailRemetente = "no-reply@colegiolema.com.br";
-
-        private const int porta = 587;
-
         private readonly IBaseRepository _repository;
 
-        public BaseBusiness(IBaseRepository repository) => _repository = repository;
+        private Dictionary<string, string> configurations;
+
+        private Dictionary<string, string> Configurations 
+        {
+            get { return configurations; }
+            set { configurations = value; }
+        }
+
+        public BaseBusiness(IBaseRepository repository)
+        {
+            _repository = repository;
+            Configurations = GetConfigurations();
+        }
+
+        private Dictionary<string, string> GetConfigurations()
+        {
+            try
+            {
+                var dataTable = _repository.GetConfigurations();
+
+                Dictionary<string, string> _configurations = new Dictionary<string, string>();
+
+                foreach (DataRow dataRow in dataTable.Rows)
+                {
+                    _configurations.Add(dataRow["Chave"].ToString(), dataRow["Valor"].ToString());
+                }
+
+                return _configurations;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public List<MenuItem> GetUserMenu(int idUser)
         {
@@ -63,13 +90,13 @@ namespace SchoolBusiness.Services
         {
             try
             {
-                using (var client = new SmtpClient(smtp, porta))
+                using (var client = new SmtpClient(Configurations.GetValueOrDefault("ServidorSMTP"), Convert.ToInt32(Configurations.GetValueOrDefault("PortaSMTP"))))
                 {
-                    client.Credentials = new NetworkCredential("credencial@emailserver.com", "YourPassword");
+                    client.Credentials = new NetworkCredential(Configurations.GetValueOrDefault("UsuarioSMTP"), Configurations.GetValueOrDefault("SenhaSMTP"));
                     client.EnableSsl = true;
 
                     var message = new MailMessage();
-                    message.From = new MailAddress("myemail@emailserver.com", "Nome Exibição");
+                    message.From = new MailAddress(Configurations.GetValueOrDefault("EnderecoRemetente"), Configurations.GetValueOrDefault("NomeRemetente"));
                     message.To.Add(new MailAddress(email.Endereco));
                     message.Subject = email.Assunto;
                     message.Body = email.Mensagem;

@@ -1132,6 +1132,12 @@
     top: -80px;
 }
 
+.edu2_faculty_wrap #owl-carousel-6 .owl-controls.clickable {
+    position: absolute;
+    right: 0px;
+    top: -57px;
+}
+
 .edu2_faculty_wrap .owl-controls .owl-buttons div {
     border: 1px solid #c4c4c4;
     border-radius: 0;
@@ -1157,10 +1163,14 @@
     }
 
 .edu2_faculty_wrap .owl-controls .owl-buttons .owl-prev:before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
     content: "\f104";
 }
 
 .edu2_faculty_wrap .owl-controls .owl-buttons .owl-next:before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
     content: "\f105";
 }
 /*slider faculty member end*/
@@ -3630,9 +3640,9 @@
             border: 2px solid #e2e2e2;
             height: 60px;
             line-height: 54px;
-            font-family: FontAwesome;
+            font-family: 'Font Awesome 5 Free';
             font-style: normal;
-            font-weight: normal;
+            font-weight: 900;
             text-decoration: inherit;
             font-size: 17px;
             text-align: center;
@@ -3768,6 +3778,7 @@
         }
 
 .convocation_timing {
+    font-family: 'Font Awesome 5 Free';
     float: left;
     width: 100%;
     border-bottom: 1px solid;

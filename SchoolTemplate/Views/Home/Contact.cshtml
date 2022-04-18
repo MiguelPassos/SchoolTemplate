@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Contact";
+    ViewData["Title"] = "Fale Conosco";
 }
 
 @section Scripts{
@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="contact_2_headung">
-                        <h3>Fale Conosco</h3>
+                        <h3>@ViewData["Title"]</h3>
                         <p>Entre em contato conosco através do formulário ou e-mail que entraremos em contato para marcar uma visita, ou se preferir utilize um dos telefones abaixo.</p>
                     </div>
                 </div>
@@ -29,9 +29,8 @@
                                 <div class="inputs_des des_2">
                                     <input type="text" placeholder="Nome"><i class="fa fa-user"></i>
                                 </div>
-
                                 <div class="inputs_des des_2">
-                                    <input class="cpf" type="text" placeholder="E-mail">
+                                    <input class="email" type="text" placeholder="E-mail">
                                     <i class="far fa-envelope"></i>
                                 </div>
                                 <div class="inputs_des des_2">

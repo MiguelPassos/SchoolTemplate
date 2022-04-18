@@ -18,6 +18,44 @@ namespace SchoolRepository.Services
             _config = options;
         }
 
+        public DataTable GetConfigurations()
+        {
+            using (var conn = new SqlConnection(_config.Value.LocalConnection))
+            {
+                try
+                {
+                    using (var cmd = new SqlCommand("SP_GET_CONFIGURATIONS", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandTimeout = 0;
+
+                        conn.Open();
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            using (var dt = new DataTable())
+                            {
+                                dt.Load(reader);
+                                return dt;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    if (conn.State == ConnectionState.Open)
+                    {
+                        conn.Close();
+                        conn.Dispose();
+                    }
+                }
+            }
+        }
+
         public DataTable GetUserMenu(int idUser) 
         {
             using (var conn = new SqlConnection(_config.Value.LocalConnection))

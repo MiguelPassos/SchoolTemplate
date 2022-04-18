@@ -20,11 +20,14 @@
                 <span class="navbar-brand"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></span>
             </div>
             <div class="collapse navbar-collapse">
-                <p class="navbar-text">
-                    Usamos cookies para melhorar sua experiência e para ajudar a entender como nosso site é usado. Ao utilizar este site, você aceita o uso de cookies.
-                </p>
-                <div class="navbar-right">
-                    @*<a asp-controller="Home" asp-action="Privacy" class="btn btn-info navbar-btn">Learn More</a>*@
+                <div class="col-md-8" style="color: #fff;">
+                    <p>
+                        Usamos cookies para melhorar sua experiência e para ajudar a entender como nosso site é usado.<br />
+                        Ao utilizar este site, você aceita nossa Política de Privacidade e o uso de cookies.
+                    </p>
+                </div>
+                <div class="col-md-3 navbar-right" style="padding-top: 10px; text-align: right;">
+                    <a asp-controller="Home" asp-action="Privacy" class="btn btn-info navbar-btn">Saiba Mais</a>
                     <button type="button" class="btn btn-default navbar-btn" data-cookie-string="@cookieString">Aceito</button>
                 </div>
             </div>
