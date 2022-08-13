@@ -98,7 +98,19 @@ namespace SchoolTemplate.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult RecoveryAccess(UserViewModel userViewModel)
         {
-            string mensagem = @"<div style=""font-family: Calibri, Helvetica, sans - serif; font - size: 12pt;""><h1 style=""font-family: Arial, serif; text-align: center;"">Recuperação de Acesso</h1><div style=""font-family: Arial, serif; font-size: medium; text-align: center; margin: 0px 20px;""><p>Caro, {0}</p><p>Você solicitou recuperar o seu acesso no sistema do Colégio Lema.<br/>Para recuperá-lo, por favor clique no link abaixo.</p><a href=""{1}"">Recuperar meu acesso ao sistema</a></div><div style=""font-family: Arial, serif;font-size: medium;text-align: center;margin: 0px 20px;""><p>Caso não tenha sido você que solicitou a recuperação de acesso, por favor desconsidere este e-mail.<br/><br/>Atenciosamente,<br/><br/>Diretoria do Colégio Lema</p></div></div>";
+            string mensagem = @"<div style=""font-family: Calibri, Helvetica, sans - serif; font - size: 12pt;"">
+                                    <h1 style=""font-family: Arial, serif; text-align: center;"">Recuperação de Acesso</h1>
+                                    <div style=""font-family: Arial, serif; font-size: medium; text-align: center; margin: 0px 20px;"">
+                                        <p>Caro, {0}</p>
+                                        <p>Você solicitou recuperar o seu acesso no sistema do Colégio Lema.<br/>
+                                        Para recuperá-lo, por favor clique no link abaixo.</p>
+                                            <a href=""{1}"">Recuperar meu acesso ao sistema</a>
+                                    </div>
+                                    <div style=""font-family: Arial, serif;font-size: medium;text-align: center;margin: 0px 20px;"">
+                                        <p>Caso não tenha sido você que solicitou a recuperação de acesso, por favor desconsidere este e-mail.<br/><br/>
+                                            Atenciosamente,<br/><br/>Diretoria do Colégio Lema</p>
+                                    </div>
+                                </div>";
 
             try
             {
@@ -108,7 +120,7 @@ namespace SchoolTemplate.Controllers
 
                     if (user != null)
                     {
-                        mensagem = string.Format(mensagem, string.Concat(user.Nome, " ", user.Sobrenome), $"https://localhost:44332/Account/RecoveryAcess?recoveryKey={user.Token}");
+                        mensagem = string.Format(mensagem, string.Concat(user.Nome, " ", user.Sobrenome), $"{BaseUrl}Account/RecoveryAcess?recoveryKey={user.Token}");
 
                         SendEmailMessage(user.Email, "Colégio Lema - Recuperação de Acesso", mensagem).Wait();
                         TempData["Message"] = ConfigMessage("Recuperar Acesso", "Foi enviado um e-mail contendo as intruções <br /> para recuperar o seu acesso. Por favor verifique.");
@@ -314,7 +326,7 @@ namespace SchoolTemplate.Controllers
             {
                 var user = _accountBusiness.GetUserData(userDocument);
 
-                mensagem = string.Format(mensagem, string.Concat(user.Nome, " ", user.Sobrenome), $"https://localhost:44332/Account/ValidateUser?recoveryKey={user.Token}");
+                mensagem = string.Format(mensagem, string.Concat(user.Nome, " ", user.Sobrenome), $"{BaseUrl}Account/ValidateUser?recoveryKey={user.Token}");
 
                 await SendEmailMessage(user.Email, "Colégio Lema - Validação de E-mail", mensagem);
                 TempData["Message"] = ConfigMessage("Usuário registrado com sucesso!", "Foi enviado um e-mail contendo as intruções para validar<br />seu e-mail e ativar o seu acesso. Por favor verifique.");

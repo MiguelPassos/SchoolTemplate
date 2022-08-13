@@ -1,27 +1,31 @@
 ﻿@using SchoolTemplate.Helpers
-@model List<SchoolTemplate.Models.AcademicMemberModelView>
-<!-- FACULTY WRAP START-->
-<section>
-    <div class="container">
-        <div class="row">
-            <!-- HEADING 1 START-->
-            <div class="col-md-12">
-                <div class="kf_edu2_heading1">
-                    <h3>Membros Acadêmicos</h3>
+@model IEnumerable<SchoolTemplate.Models.AcademicMemberModelView>
+
+@if (Model != null && Model.Count() > 0)
+{
+    <!-- FACULTY WRAP START-->
+    <section>
+        <div class="container">
+            <div class="row">
+                <!-- HEADING 1 START-->
+                <div class="col-md-12">
+                    <div class="kf_edu2_heading1">
+                        <h3>Membros Acadêmicos</h3>
+                    </div>
                 </div>
-            </div>
-            <!-- HEADING 1 END-->
-            <!-- FACULTY SLIDER WRAP START-->
-            <div class="edu2_faculty_wrap">
-                <div id="owl-demo-8" class="owl-carousel owl-theme">
-                    @foreach (var member in Model)
-                    {
-                        @Html.Raw(HomeHelper.GenerateAcademicMemberFor(member));
-                    }
+                <!-- HEADING 1 END-->
+                <!-- FACULTY SLIDER WRAP START-->
+                <div class="edu2_faculty_wrap">
+                    <div id="owl-demo-8" class="owl-carousel owl-theme">
+                        @foreach (var member in Model)
+                        {
+                            @Html.Raw(HomeHelper.GenerateAcademicMemberFor(member));
+                        }
+                    </div>
                 </div>
+                <!-- FACULTY SLIDER WRAP END-->
             </div>
-            <!-- FACULTY SLIDER WRAP END-->
         </div>
-    </div>
-</section>
-<!-- FACULTY WRAP START-->
+    </section>
+    <!-- FACULTY WRAP START-->
+}

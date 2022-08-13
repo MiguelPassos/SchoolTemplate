@@ -25,6 +25,8 @@ namespace SchoolTemplate.Controllers
     {
         private readonly IBaseBusiness _baseBusiness;
 
+        protected string BaseUrl {get; private set;}
+
         public BaseController(IBaseBusiness baseBusiness) => _baseBusiness = baseBusiness;
 
         public override void OnActionExecuting(ActionExecutingContext context)
@@ -32,6 +34,8 @@ namespace SchoolTemplate.Controllers
             base.OnActionExecuting(context);
             ViewBag.Version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             
+            BaseUrl = $"{Request.Scheme}://{Request.Host}/";
+
             List<MenuItem> userMenu;
             int idUser = 0;
             

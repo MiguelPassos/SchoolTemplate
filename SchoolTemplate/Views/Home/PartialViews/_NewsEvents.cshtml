@@ -1,27 +1,31 @@
 ﻿@using SchoolTemplate.Helpers
-@model List<SchoolTemplate.Models.EventViewModel>
-<!-- NOVIDADES & EVENTOS INÍCIO -->
-<section class="edu2_new_wrap">
-    <div class="container">
-        <!-- HEADING 2 START-->
-        <div class="col-md-12">
-            <div class="kf_edu2_heading2">
-                <h3>Novidades &amp; Eventos</h3>
-            </div>
-        </div>
-        <!-- HEADING 2 END-->
-        <!-- EDU2 NEW DES START-->
-        @foreach (var evt in Model)
-        {
-            <div class="col-md-6">
-                <div class="edu2_new_des">
-                    <div class="row">
-                        @Html.Raw(HomeHelper.GenerateEventInfoFor(evt, Model.IndexOf(evt)))
-                    </div>
+@model IEnumerable<SchoolTemplate.Models.EventViewModel>
+
+@if (Model != null && Model.Count() > 0)
+{
+    <!-- NOVIDADES & EVENTOS INÍCIO -->
+    <section class="edu2_new_wrap">
+        <div class="container">
+            <!-- HEADING 2 START-->
+            <div class="col-md-12">
+                <div class="kf_edu2_heading2">
+                    <h3>Novidades &amp; Eventos</h3>
                 </div>
             </div>
-        }
-        <!-- EDU2 NEW DES END-->
-    </div>
-</section>
-<!-- NOVIDADES & EVENTOS FIM -->
+            <!-- HEADING 2 END-->
+            <!-- EDU2 NEW DES START-->
+            @foreach (var evt in Model)
+            {
+                <div class="col-md-6">
+                    <div class="edu2_new_des">
+                        <div class="row">
+                            @Html.Raw(HomeHelper.GenerateEventInfoFor(evt, Model.ToList().IndexOf(evt)))
+                        </div>
+                    </div>
+                </div>
+            }
+            <!-- EDU2 NEW DES END-->
+        </div>
+    </section>
+    <!-- NOVIDADES & EVENTOS FIM -->
+}
